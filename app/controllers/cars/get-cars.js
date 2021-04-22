@@ -2,8 +2,6 @@
 
 const { findAllCars } = require("../../repositories/cars-repository");
 
-//const carsRepository = require("../../repositories/cars-repository");
-
 async function getCars(req, res) {
   try {
     //VALIDO VARIABLES
@@ -17,4 +15,4 @@ async function getCars(req, res) {
   }
 }
 
-module.exports = getCars;
+module.exports = { getCars };

@@ -17,7 +17,7 @@ const cars = [
     cv: 80,
   },
   {
-    id: 1,
+    id: 3,
     marca: "Audi",
     modelo: "A3",
     anho: 2017,
@@ -29,6 +29,34 @@ async function findAllCars() {
   //await SELECT * FROM cars;
   return cars;
 }
+async function findCarById(id) {
+  //LLAMADA REAL BASE DE DATOS
+  return cars.find((car) => car.id === +id);
+}
+
+async function addCar(car) {
+  //LLAMADA A LA BASE DE DATOS!
+  //const id = Math.max(...cars.map((car) => car.id === id)) + 1;
+  const id = cars.reduce((acc, car) => (car.id > acc ? car.id : acc), 0) + 1;
+  console.log("nuevoId", id);
+  const newCar = {
+    id,
+    ...car,
+  };
+  cars.push(newCar);
+  return true;
+}
+async function removeCarById(idCar) {
+  const car = findCarById(idCar);
+  const index = cars.indexOf(car);
+  return cars.splice(index, 1);
+
+  console.log("Borrando");
+}
+
 module.exports = {
+  removeCarById,
+  addCar,
+  findCarById,
   findAllCars,
 };

@@ -3,6 +3,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+app.use(express.json());
 const carsRouter = require("./app/routes/cars-routes");
 const port = process.env.SERVER_PORT || 3000;
 
